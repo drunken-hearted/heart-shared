@@ -16,7 +16,7 @@ else
 		size = ScreenScale(6),
 		weight = 500
 	})
-	
+
 	surface.CreateFont("heart_font_aurebeshsmall", {
 		font = "Aurebesh",
 		size = ScreenScale(4),
