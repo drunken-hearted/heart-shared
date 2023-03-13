@@ -74,4 +74,18 @@ else
 		surface.DrawLine(x - length / 2, y - length * 0.875, x - length, y); //top left diagonal
 		surface.DrawLine(x - length / 2, y + length * 0.875, x - length, y); //bottom left diagonal
 	end
+
+	local blurMat = Material("pp/blurscreen");
+	heartfunctions.blur = function(x, y, w, h)
+		blurMat:SetFloat("$blur", 5);
+		blurMat:Recompute();
+		render.UpdateScreenEffectTexture();
+
+		surface.SetDrawColor(255,255,255,255);
+		surface.SetMaterial(blurMat);
+
+		render.SetScissorRect(x,y,x + w,y + h,true);
+		surface.DrawTexturedRect(0, 0, ScrW(), ScrH());
+		render.SetScissorRect(0, 0, 0, 0, false);
+	end
 end
