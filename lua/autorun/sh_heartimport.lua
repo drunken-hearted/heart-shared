@@ -2,6 +2,8 @@ if SERVER then
 	resource.AddFile("resource/fonts/aurebesh.ttf");
 	resource.AddFile("resource/fonts/proxima_nova_rg.ttf");
 	resource.AddFile("resource/fonts/roboto_condensed.ttf");
+
+	AddCSLuaFile("heart_imgui/heart_imgui.lua");
 else
 	// FONTS --------------------------------------
 
