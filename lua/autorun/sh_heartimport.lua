@@ -39,11 +39,18 @@ else
 		weight = 800
 	})
 
+	surface.CreateFont("heart_font_proximalarge", {
+		font = "Proxima Nova Rg",
+		size = ScreenScale(10),
+		weight = 625
+	})
+
 	surface.CreateFont("heart_font_proximamid", {
 		font = "Proxima Nova Rg",
 		size = ScreenScale(7),
 		weight = 500
 	})
+
 	surface.CreateFont("heart_font_proximasmall", {
 		font = "Proxima Nova Rg",
 		size = ScreenScale(5),
@@ -64,7 +71,11 @@ else
 		weight = 500
 	})
 
+	// DRAWING LIBRARY --------------------------------------
+
 	heartfunctions = {};
+
+	heartfunctions.imgui = include("heart_imgui/heart_imgui.lua");
 
 	heartfunctions.hexagon = function(x, y, length)
 		surface.DrawLine(x - length / 2, y - length * 0.875, x + length / 2, y - length * 0.875); //top line
