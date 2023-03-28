@@ -4,6 +4,8 @@ if SERVER then
 	resource.AddFile("resource/fonts/roboto_condensed.ttf");
 
 	AddCSLuaFile("heart_imgui/heart_imgui.lua");
+
+	util.AddNetworkString("heart_shared_clientready");
 else
 	// FONTS --------------------------------------
 
@@ -45,6 +47,12 @@ else
 		weight = 625
 	})
 
+	surface.CreateFont("heart_font_proximamid_bold", {
+		font = "Proxima Nova Rg",
+		size = ScreenScale(7),
+		weight = 625
+	})
+
 	surface.CreateFont("heart_font_proximamid", {
 		font = "Proxima Nova Rg",
 		size = ScreenScale(7),
@@ -70,6 +78,12 @@ else
 		size = ScreenScale(8),
 		weight = 500
 	})
+
+	// NET MESSAGE --------------------------------------
+	hook.Add("InitPostEntity", "heart_shared_initpostentity", function()
+		net.Start("heart_shared_clientready");
+		net.SendToServer();
+	end)
 
 	// DRAWING LIBRARY --------------------------------------
 
