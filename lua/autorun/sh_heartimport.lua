@@ -79,6 +79,12 @@ else
 		weight = 500
 	})
 
+	surface.CreateFont("heart_font_robotosmall", {
+		font = "Roboto Condensed",
+		size = ScreenScale(5),
+		weight = 500
+	})
+
 	// NET MESSAGE --------------------------------------
 	hook.Add("InitPostEntity", "heart_shared_initpostentity", function()
 		net.Start("heart_shared_clientready");
@@ -115,4 +121,30 @@ else
 		surface.DrawTexturedRect(0, 0, ScrW(), ScrH());
 		render.SetScissorRect(0, 0, 0, 0, false);
 	end
+
+	heartfunctions.lerpcolour = function(frac, from, to)
+		local col = Color(
+			Lerp(frac, from.r, to.r),
+			Lerp(frac, from.g, to.g),
+			Lerp(frac, from.b, to.b),
+			Lerp(frac, from.a, to.a)
+		)
+		return col;
+	end
+
+	heartfunctions.lerpcolours = function(frac, cols)
+		local cUnit = 1 / #cols;
+
+		if (frac <= 0) then frac = 0.001 end
+
+		return heartfunctions.lerpcolour(frac % cUnit / cUnit, cols[math.Clamp(math.floor(frac / cUnit),1,3)], cols[math.Clamp(math.ceil(frac / cUnit),1,3)]);
+	end
+
+	heartfunctions.defcon = {
+		Color(202, 66, 75),
+		Color(255, 140, 69),
+		Color(255, 231, 69),
+		Color(25, 255, 125),
+		Color(86, 179, 255)
+	}
 end
